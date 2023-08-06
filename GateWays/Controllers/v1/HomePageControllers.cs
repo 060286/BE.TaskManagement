@@ -3,9 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BE.TaskManagement.GateWays.Controllers.v1
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class HomePageControllers : ControllerBase
+    [ApiVersion("1.0")]
+    public class HomePageControllers : BaseController
     {
         private readonly IHomePageService _homePageService;
 
@@ -14,7 +13,7 @@ namespace BE.TaskManagement.GateWays.Controllers.v1
             _homePageService = homePageService;
         }
 
-        [HttpGet(Name = "task-list")]
+        [HttpGet("task-list")]
         public async Task<IActionResult> GetTaskListHandler()
         {
             var response = await _homePageService.GetTaskItemListRequest();
